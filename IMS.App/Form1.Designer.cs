@@ -40,6 +40,7 @@
             buttonSave = new Button();
             buttonDelete = new Button();
             label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(65, 65);
+            label1.Location = new Point(71, 179);
             label1.Name = "label1";
             label1.Size = new Size(273, 48);
             label1.TabIndex = 1;
@@ -63,7 +64,7 @@
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(65, 145);
+            textBoxSearch.Location = new Point(71, 259);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(732, 55);
             textBoxSearch.TabIndex = 2;
@@ -71,7 +72,7 @@
             // 
             // textBoxId
             // 
-            textBoxId.Location = new Point(65, 323);
+            textBoxId.Location = new Point(71, 437);
             textBoxId.Name = "textBoxId";
             textBoxId.Size = new Size(732, 55);
             textBoxId.TabIndex = 4;
@@ -79,7 +80,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(65, 243);
+            label2.Location = new Point(71, 357);
             label2.Name = "label2";
             label2.Size = new Size(51, 48);
             label2.TabIndex = 3;
@@ -87,7 +88,7 @@
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Location = new Point(65, 676);
+            textBoxDescription.Location = new Point(71, 790);
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.Size = new Size(732, 55);
             textBoxDescription.TabIndex = 8;
@@ -95,7 +96,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(65, 596);
+            label3.Location = new Point(71, 710);
             label3.Name = "label3";
             label3.Size = new Size(201, 48);
             label3.TabIndex = 7;
@@ -103,7 +104,7 @@
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(65, 498);
+            textBoxName.Location = new Point(71, 612);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(732, 55);
             textBoxName.TabIndex = 6;
@@ -111,7 +112,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(65, 418);
+            label4.Location = new Point(71, 532);
             label4.Name = "label4";
             label4.Size = new Size(115, 48);
             label4.TabIndex = 5;
@@ -119,7 +120,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(65, 790);
+            buttonSave.Location = new Point(71, 904);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(732, 69);
             buttonSave.TabIndex = 9;
@@ -129,7 +130,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(65, 912);
+            buttonDelete.Location = new Point(71, 1026);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(732, 69);
             buttonDelete.TabIndex = 10;
@@ -146,12 +147,22 @@
             label5.TabIndex = 11;
             label5.Text = "Total";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(71, 65);
+            label6.Name = "label6";
+            label6.Size = new Size(216, 48);
+            label6.TabIndex = 12;
+            label6.Text = "Proponent 1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(2168, 1245);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(buttonDelete);
             Controls.Add(buttonSave);
@@ -185,5 +196,6 @@
         private Button buttonSave;
         private Button buttonDelete;
         private Label label5;
+        private Label label6;
     }
 }
