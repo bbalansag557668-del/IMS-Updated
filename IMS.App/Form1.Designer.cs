@@ -40,22 +40,30 @@
             buttonSave = new Button();
             buttonDelete = new Button();
             label5 = new Label();
+            panel1 = new Panel();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(866, 65);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(807, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 123;
-            dataGridView1.Size = new Size(1242, 916);
+            dataGridView1.Size = new Size(1361, 1245);
             dataGridView1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(65, 65);
+            label1.Location = new Point(37, 164);
             label1.Name = "label1";
             label1.Size = new Size(273, 48);
             label1.TabIndex = 1;
@@ -63,7 +71,7 @@
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(65, 145);
+            textBoxSearch.Location = new Point(37, 244);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(732, 55);
             textBoxSearch.TabIndex = 2;
@@ -71,7 +79,7 @@
             // 
             // textBoxId
             // 
-            textBoxId.Location = new Point(65, 323);
+            textBoxId.Location = new Point(37, 422);
             textBoxId.Name = "textBoxId";
             textBoxId.Size = new Size(732, 55);
             textBoxId.TabIndex = 4;
@@ -79,7 +87,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(65, 243);
+            label2.Location = new Point(37, 342);
             label2.Name = "label2";
             label2.Size = new Size(51, 48);
             label2.TabIndex = 3;
@@ -87,7 +95,7 @@
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Location = new Point(65, 676);
+            textBoxDescription.Location = new Point(37, 775);
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.Size = new Size(732, 55);
             textBoxDescription.TabIndex = 8;
@@ -95,7 +103,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(65, 596);
+            label3.Location = new Point(37, 695);
             label3.Name = "label3";
             label3.Size = new Size(201, 48);
             label3.TabIndex = 7;
@@ -103,7 +111,7 @@
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(65, 498);
+            textBoxName.Location = new Point(37, 597);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(732, 55);
             textBoxName.TabIndex = 6;
@@ -111,7 +119,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(65, 418);
+            label4.Location = new Point(37, 517);
             label4.Name = "label4";
             label4.Size = new Size(115, 48);
             label4.TabIndex = 5;
@@ -119,7 +127,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(65, 790);
+            buttonSave.Location = new Point(37, 889);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(732, 69);
             buttonSave.TabIndex = 9;
@@ -129,7 +137,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(65, 912);
+            buttonDelete.Location = new Point(37, 1011);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(732, 69);
             buttonDelete.TabIndex = 10;
@@ -139,12 +147,66 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Location = new Point(1674, 1006);
             label5.Name = "label5";
             label5.Size = new Size(95, 48);
             label5.TabIndex = 11;
             label5.Text = "Total";
+            label5.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(textBoxId);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(buttonDelete);
+            panel1.Controls.Add(textBoxSearch);
+            panel1.Controls.Add(buttonSave);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(textBoxDescription);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(textBoxName);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(807, 1245);
+            panel1.TabIndex = 12;
+            // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "Id";
+            Column1.Frozen = true;
+            Column1.HeaderText = "Id";
+            Column1.MinimumWidth = 15;
+            Column1.Name = "Column1";
+            Column1.Visible = false;
+            Column1.Width = 300;
+            // 
+            // Column2
+            // 
+            Column2.DataPropertyName = "Name";
+            Column2.HeaderText = "Name";
+            Column2.MinimumWidth = 15;
+            Column2.Name = "Column2";
+            Column2.Width = 300;
+            // 
+            // Column3
+            // 
+            Column3.DataPropertyName = "Description";
+            Column3.HeaderText = "Description";
+            Column3.MinimumWidth = 15;
+            Column3.Name = "Column3";
+            Column3.Width = 300;
+            // 
+            // Column4
+            // 
+            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column4.DataPropertyName = "SpecializationName";
+            Column4.HeaderText = "Specializations";
+            Column4.MinimumWidth = 15;
+            Column4.Name = "Column4";
             // 
             // Form1
             // 
@@ -153,20 +215,13 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(2168, 1245);
             Controls.Add(label5);
-            Controls.Add(buttonDelete);
-            Controls.Add(buttonSave);
-            Controls.Add(textBoxDescription);
-            Controls.Add(label3);
-            Controls.Add(textBoxName);
-            Controls.Add(label4);
-            Controls.Add(textBoxId);
-            Controls.Add(label2);
-            Controls.Add(textBoxSearch);
-            Controls.Add(label1);
             Controls.Add(dataGridView1);
+            Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,5 +240,10 @@
         private Button buttonSave;
         private Button buttonDelete;
         private Label label5;
+        private Panel panel1;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
     }
 }

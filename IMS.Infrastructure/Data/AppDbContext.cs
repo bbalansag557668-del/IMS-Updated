@@ -22,5 +22,6 @@ namespace IMS.Infrastructure.Data
 
         public DbSet<Programs> Programs { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
     }
 }

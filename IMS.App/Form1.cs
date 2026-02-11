@@ -1,4 +1,5 @@
 using IMS.Domain.Models;
+using IMS.Domain.ViewModel;
 using IMS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +20,19 @@ namespace IMS.App
             {
                 using (var _context = new AppDbContext())
                 {
+                    var programs = _context.Programs
+                                                .Select(p => new ProgramViewModel
+                                                {
+                                                    Id = p.Id,
+                                                    Name = p.Name,
+                                                    Description = p.Description,
+                                                    SpecializationName = string.Join(", ", p.Specializations.Select(s => s.Name))
+                                                })
+                                                .ToList();
                     if (string.IsNullOrEmpty(searchTerm))
-                        dataGridView1.DataSource = _context.Programs.ToList();
+                        dataGridView1.DataSource = programs;
                     else
-                        dataGridView1.DataSource = _context.Programs
+                        dataGridView1.DataSource = programs
                             .Where(p => p.Id.ToString().Contains(searchTerm) ||
                                         p.Name.ToLower().Contains(searchTerm) ||
                                         p.Description.ToLower().Contains(searchTerm))
