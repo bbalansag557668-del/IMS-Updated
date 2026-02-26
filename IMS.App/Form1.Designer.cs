@@ -42,19 +42,13 @@
             label5 = new Label();
             label6 = new Label();
             panel1 = new Panel();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel1.SuspendLayout(); ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(807, 0);
             dataGridView1.Name = "dataGridView1";
@@ -158,6 +152,15 @@
             label5.Text = "Total";
             label5.TextAlign = ContentAlignment.BottomRight;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(71, 65);
+            label6.Name = "label6";
+            label6.Size = new Size(216, 48);
+            label6.TabIndex = 12;
+            label6.Text = "Proponent 1";
+            // 
             // panel1
             // 
             panel1.Controls.Add(textBoxId);
@@ -175,49 +178,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(807, 1245);
             panel1.TabIndex = 12;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(71, 65);
-            label6.Name = "label6";
-            label6.Size = new Size(216, 48);
-            label6.TabIndex = 12;
-            label6.Text = "Proponent 1";
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "Id";
-            Column1.Frozen = true;
-            Column1.HeaderText = "Id";
-            Column1.MinimumWidth = 15;
-            Column1.Name = "Column1";
-            Column1.Visible = false;
-            Column1.Width = 300;
-            // 
-            // Column2
-            // 
-            Column2.DataPropertyName = "Name";
-            Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 15;
-            Column2.Name = "Column2";
-            Column2.Width = 300;
-            // 
-            // Column3
-            // 
-            Column3.DataPropertyName = "Description";
-            Column3.HeaderText = "Description";
-            Column3.MinimumWidth = 15;
-            Column3.Name = "Column3";
-            Column3.Width = 300;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column4.DataPropertyName = "SpecializationName";
-            Column4.HeaderText = "Specializations";
-            Column4.MinimumWidth = 15;
-            Column4.Name = "Column4";
             // 
             // Form1
             // 
@@ -254,9 +214,5 @@
         private Label label5;
         private Label label6;
         private Panel panel1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
     }
 }

@@ -1,46 +1,44 @@
 using IMS.Domain.Models;
 using IMS.Domain.ViewModel;
 using IMS.Infrastructure.Data;
+using IMS.Service.Repositories;
+using IMS.Service.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace IMS.App
 {
     public partial class Form1 : Form
     {
+        private readonly IProgramService programService;
         public Form1()
         {
+            programService = new ProgramService();
             InitializeComponent();
             LoadPrograms();
         }
 
         //CRUD - Read Operation (Listing Programs)
-        private void LoadPrograms(string? searchTerm = null)
+        private async void LoadPrograms(string? searchTerm = null)
         {
             try
             {
-                using (var _context = new AppDbContext())
+                var programs = await programService.GetAllAsync();
+
+                if (!string.IsNullOrEmpty(searchTerm))
                 {
-                    var programs = _context.Programs
-                                                .Select(p => new ProgramViewModel
-                                                {
-                                                    Id = p.Id,
-                                                    Name = p.Name,
-                                                    Description = p.Description,
-                                                    SpecializationName = string.Join(", ", p.Specializations.Select(s => s.Name))
-                                                })
-                                                .ToList();
-                    if (string.IsNullOrEmpty(searchTerm))
-                        dataGridView1.DataSource = programs;
-                    else
-                        dataGridView1.DataSource = programs
-                            .Where(p => p.Id.ToString().Contains(searchTerm) ||
-                                        p.Name.ToLower().Contains(searchTerm) ||
-                                        p.Description.ToLower().Contains(searchTerm))
-                            .ToList();
-
-
-                    label5.Text = $"Total Programs: {_context.Programs.ToList().Count()}";
+                    programs = programs.Where(p => p.Name.ToLower().Contains(searchTerm)).ToList();
                 }
+
+                dataGridView1.DataSource = programs.Select(p => new ProgramViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    SpecializationName = p.Specializations != null ?
+                            string.Join(",", p.Specializations.Select(c => c.Name).ToList())
+                            : "N/A"
+                }).ToList();
+
             }
             catch (Exception ex)
             {
@@ -57,45 +55,30 @@ namespace IMS.App
             LoadPrograms(textBoxSearch.Text.ToLower());
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private async void buttonSave_Click(object sender, EventArgs e)
         {
             try
             {
-                using (var _context = new AppDbContext())
+                if (string.IsNullOrEmpty(textBoxId.Text.Trim()))
                 {
-                    if (string.IsNullOrEmpty(textBoxId.Text.Trim()))
+                    // Create new program
+                    var newProgram = new Programs
                     {
-                        var program = new Programs
-                        {
-                            Name = textBoxName.Text.Trim(),
-                            Description = textBoxDescription.Text.Trim()
-                        };
-
-                        _context.Programs.Add(program);
-                    }
-                    else
-                    {
-                        var programId = int.Parse(textBoxId.Text.Trim());
-                        //var entity = _context.Programs.Where(c => c.Id == programId);
-                        var entity = _context.Programs.Find(programId);
-                        if (entity != null)
-                        {
-                            entity.Name = textBoxName.Text.Trim();
-                            entity.Description = textBoxDescription.Text.Trim();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Program not found for update.");
-                            return;
-                        }
-                        _context.Programs.Update(entity);
-                    }
-                    _context.SaveChanges();
-
-                    MessageBox.Show("Program saved/updated successfully!");
-                    LoadPrograms();
-                    ;
+                        Name = textBoxName.Text.Trim(),
+                        Description = textBoxDescription.Text.Trim()
+                    };
+                    await programService.AddAsync(newProgram);
                 }
+                else
+                {
+                    var programId = int.Parse(textBoxId.Text.Trim());
+                    var existingProgram = await programService.GetByIdAsync(programId);
+                    await programService.UpdateAsync(existingProgram);
+                }
+
+                MessageBox.Show("Program saved/updated successfully!");
+                LoadPrograms();
+
             }
             catch (Exception ex)
             {
@@ -105,26 +88,21 @@ namespace IMS.App
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            using(var _context = new AppDbContext())
+            if (string.IsNullOrEmpty(textBoxId.Text.Trim()))
             {
-                if (string.IsNullOrEmpty(textBoxId.Text.Trim()))
-                {
-                    MessageBox.Show("Please enter a valid Program ID to delete.");
-                    return;
-                }
-                var programId = int.Parse(textBoxId.Text.Trim());
-                var entity = _context.Programs.Find(programId);
-                if (entity != null)
-                {
-                    _context.Programs.Remove(entity);
-                    _context.SaveChanges();
-                    MessageBox.Show("Program deleted successfully!");
-                    LoadPrograms();
-                }
-                else
-                {
-                    MessageBox.Show("Program not found for deletion.");
-                }
+                MessageBox.Show("Please enter a valid Program ID to delete.");
+                return;
+            }
+            var programId = int.Parse(textBoxId.Text.Trim());
+            if (programId != 0)
+            {
+                programService.DeleteAsync(programId);
+                MessageBox.Show("Program deleted successfully!");
+                LoadPrograms();
+            }
+            else
+            {
+                MessageBox.Show("Program not found for deletion.");
             }
         }
     }
